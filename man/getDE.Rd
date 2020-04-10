@@ -4,17 +4,19 @@
 \alias{getDE}
 \title{Get Differentially Expressed Genes by Custum Significance Threshold}
 \usage{
-getDE(fileN, fct, pvt)
+getDE(file_name, fold_change, p_value, path = "./data/raw/")
 }
 \arguments{
-\item{fileN}{file name in the data folder}
+\item{file_name}{file name in the data folder}
 
-\item{fct}{fold change threshold}
+\item{fold_change}{fold change threshold}
 
-\item{pvt}{p-value threshold}
+\item{p_value}{p-value threshold}
+
+\item{path}{path to the DESeq files}
 }
 \value{
-
+vector of differentially expressed genes
 }
 \description{
 \code{getDE} read the DESeq output file and creat or rewrite the DE column based on the manualy set fold change and p-value thesholds.
