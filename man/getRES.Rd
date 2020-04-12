@@ -2,14 +2,14 @@
 % Please edit documentation in R/enrichment_score.R
 \name{getRES}
 \alias{getRES}
-\title{Plot Running Enrichment Score to Any Gene Set}
+\title{Calculate Running Enrichment Score to Any Gene Set}
 \usage{
-getRES(target_set, universe)
+getRES(target_set, ranked_universe)
 }
 \arguments{
 \item{target_set}{vactor of ensembl gene ids}
 
-\item{universe}{DEseq2 output file with gene rank column}
+\item{ranked_universe}{DEseq2 output file with gene rank column}
 }
 \value{
 Running Enrichment Score (RES) plot
@@ -18,5 +18,6 @@ Running Enrichment Score (RES) plot
 \code{getRES}
 }
 \examples{
-
+getRES(c(1,2), c(1,2,3,4,5,6,7))
+getRES(c('a','b'), c('a','b','c','d','e','f','g'))
 }

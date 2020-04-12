@@ -1,27 +1,28 @@
-#' Plot Running Enrichment Score to Any Gene Set
+#' Calculate Running Enrichment Score to Any Gene Set
 #'
 #' \code{getRES}
 #'
 #' @param target_set vactor of ensembl gene ids
-#' @param universe DEseq2 output file with gene rank column
+#' @param ranked_universe DEseq2 output file with gene rank column
 #'
 #' @return Running Enrichment Score (RES) plot
 #'
 #' @examples
-#'
+#' getRES(c(1,2), c(1,2,3,4,5,6,7))
+#' getRES(c('a','b'), c('a','b','c','d','e','f','g'))
 
-getRES <- function(target_set, universe){
+getRES <- function(target_set, ranked_universe){
 
-  if(!is.data.frame(universe)){
-    stop('')
+  if(length(target_set) >= length(ranked_universe)){
+    stop('The target set has to be shorter than the univerese!')
   }
 
-  #if(!is.character(target_set)){
-  #  stop('')
-  #}
+  if(sum(target_set %in% ranked_universe) < length(target_set)){
+    stop('All element of the target set has to be in the universe!')
+  }
 
   #get target location code
-  target_code <- as.numeric(universe$Ensembl_ID %in% target_set)
+  target_code <- as.numeric(ranked_universe %in% target_set)
   target_code.inv <- 1- target_code
 
   #calculate running enrichment score
@@ -34,23 +35,21 @@ getRES <- function(target_set, universe){
   #combine score with the abailable data
   univ_RES <- data.frame(univ = ranked_universe, RES = RES.simple)
 
-  #plot
-  gg <- univ_RES%>%
-    filter(ranked_universe %in% target_set)%>%
-    ggplot2::ggplot(aes(x = GRank, y = 0, color = log2FoldChange))+
-    ggplot2::geom_point()+
-    ggplot2::scale_color_gradient2(
-      name = expression(log[2]~FC),
-      midpoint=0,
-      low="darkgreen",
-      mid="white",
-      high="darkred",
-      space ="Lab" )+
-    ggplot2::ggtitle(ttl)+
-    ggplot2::xlab('Genes ranked')+
-    ggplot2::ylab('Enrichment score (ES)')+
-    ggplot2::theme_bw()
-  gg <- gg+geom_line(aes(y = RES), color = 'black')
+  return(univ_RES)
+}
 
-  return(gg)
+
+#' Plot Result of RES
+#'
+#' \code{plotRES}
+#'
+#' @param
+#'
+#' @return
+#'
+#' @examples
+#'
+
+plotRES <- function(){
+
 }
