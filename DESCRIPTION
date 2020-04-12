@@ -18,6 +18,7 @@ Imports:
     AnnotationDbi
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 7.1.0
