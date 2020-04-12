@@ -7,7 +7,7 @@
 #'
 #' @return Running Enrichment Score (RES) plot
 #'
-#' @example
+#' @examples
 #'
 
 getRES <- function(target_set, universe){
