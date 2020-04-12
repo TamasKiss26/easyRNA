@@ -4,17 +4,24 @@
 \alias{hgTest}
 \title{Run Hypergeometr Test On a Set of Target Genes}
 \usage{
-hgTest(target_set, gene_universe, outputN)
+hgTest(
+  target_set,
+  gene_universe,
+  output_name,
+  output_path = "./annotation_data/GO/"
+)
 }
 \arguments{
 \item{target_set}{vector of target ensembl ids}
 
 \item{gene_universe}{vector of universe ensembl ids}
 
-\item{outputN}{file name of the ouptut}
+\item{output_name}{file name of the ouptut}
+
+\item{output_path}{output folder location}
 }
 \value{
-
+nothing, only write results to the disk
 }
 \description{
 Run Hypergeometr Test On a Set of Target Genes
